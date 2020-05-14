@@ -39,7 +39,7 @@ class Equals extends AbstractFilter
         $queryBuilder->$queryType(
             $queryBuilder
                 ->expr()
-                ->eq($option['alias'] . '.' . $option['field'], ':' . $parameter)
+                ->eq(($option['alias'] ? ($option['alias'] . '.') : '') . $option['field'], ':' . $parameter)
         );
         $queryBuilder->setParameter($parameter, $value);
     }

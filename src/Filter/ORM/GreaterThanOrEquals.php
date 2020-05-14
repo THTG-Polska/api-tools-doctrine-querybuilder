@@ -36,7 +36,7 @@ class GreaterThanOrEquals extends AbstractFilter
         $queryBuilder->$queryType(
             $queryBuilder
                 ->expr()
-                ->gte($option['alias'] . '.' . $option['field'], ':' . $parameter)
+                ->gte(($option['alias'] ? ($option['alias'] . '.') : '') . $option['field'], ':' . $parameter)
         );
         $queryBuilder->setParameter($parameter, $value);
     }

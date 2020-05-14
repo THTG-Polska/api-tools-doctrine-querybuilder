@@ -36,7 +36,7 @@ class LessThanOrEquals extends AbstractFilter
         $queryBuilder->$queryType(
             $queryBuilder
                 ->expr()
-                ->lte($option['alias'] . '.' . $option['field'], ':' . $parameter)
+                ->lte(($option['alias'] ? ($option['alias'] . '.') : '') . $option['field'], ':' . $parameter)
         );
         $queryBuilder->setParameter($parameter, $value);
     }

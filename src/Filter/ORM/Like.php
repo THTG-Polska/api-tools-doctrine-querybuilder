@@ -32,7 +32,7 @@ class Like extends AbstractFilter
             $queryBuilder
                 ->expr()
                 ->like(
-                    $option['alias'] . '.' . $option['field'],
+                    ($option['alias'] ? ($option['alias'] . '.') : '') . $option['field'],
                     $queryBuilder
                         ->expr()
                         ->literal($option['value'])

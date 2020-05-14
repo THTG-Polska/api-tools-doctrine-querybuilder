@@ -40,7 +40,7 @@ class Between extends AbstractFilter
             $queryBuilder
                 ->expr()
                 ->between(
-                    sprintf('%s.%s', $option['alias'], $option['field']),
+                    $option['alias'] ? sprintf('%s.%s', $option['alias'], $option['field']) : $option['field'],
                     sprintf(':%s', $fromParameter),
                     sprintf(':%s', $toParameter)
                 )

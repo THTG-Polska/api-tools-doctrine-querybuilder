@@ -32,7 +32,7 @@ class NotLike extends AbstractFilter
             $queryBuilder
                 ->expr()
                 ->notlike(
-                    $option['alias'] . '.' . $option['field'],
+                    ($option['alias'] ? ($option['alias'] . '.') : '') . $option['field'],
                     $queryBuilder->expr()->literal($option['value'])
                 )
         );

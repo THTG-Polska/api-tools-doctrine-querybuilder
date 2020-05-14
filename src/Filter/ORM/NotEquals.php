@@ -36,7 +36,7 @@ class NotEquals extends AbstractFilter
         $queryBuilder->$queryType(
             $queryBuilder
                 ->expr()
-                ->neq($option['alias'] . '.' . $option['field'], ':' . $parameter)
+                ->neq(($option['alias'] ? ($option['alias'] . '.') : '') . $option['field'], ':' . $parameter)
         );
         $queryBuilder->setParameter($parameter, $value);
     }

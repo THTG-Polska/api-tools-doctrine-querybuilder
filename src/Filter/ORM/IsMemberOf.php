@@ -44,7 +44,7 @@ class IsMemberOf extends AbstractFilter
         $queryBuilder->$queryType(
             $queryBuilder
                 ->expr()
-                ->isMemberOf(':' . $parameter, $option['alias'] . '.' . $option['field'])
+                ->isMemberOf(':' . $parameter, ($option['alias'] ? ($option['alias'] . '.') : '') . $option['field'])
         );
         $queryBuilder->setParameter($parameter, $value);
     }

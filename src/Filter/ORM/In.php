@@ -45,7 +45,7 @@ class In extends AbstractFilter
         $queryBuilder->$queryType(
             $queryBuilder
                 ->expr()
-                ->in($option['alias'] . '.' . $option['field'], ':' . $parameter)
+                ->in(($option['alias'] ? ($option['alias'] . '.') : '') . $option['field'], ':' . $parameter)
         );
         $queryBuilder->setParameter($parameter, $queryValues);
     }
