@@ -25,42 +25,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c96a02cc-574b-4b36-a63c-4086e7dd8fe1" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/api-tools-doctrine-querybuilder.global.php.dist" beforeDir="false" afterPath="$PROJECT_DIR$/config/api-tools-doctrine-querybuilder.global.php.dist" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/module.config.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/module.config.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Filter/ODM/AbstractFilter.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Filter/ODM/Between.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Filter/ODM/Equals.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Filter/ODM/GreaterThan.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Filter/ODM/GreaterThanOrEquals.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Filter/ODM/In.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Filter/ODM/IsNotNull.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Filter/ODM/IsNull.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Filter/ODM/LessThan.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Filter/ODM/LessThanOrEquals.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Filter/ODM/Like.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Filter/ODM/NotEquals.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Filter/ODM/NotIn.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Filter/ODM/Regex.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Filter/Service/ODMFilterManager.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Filter/Service/ODMFilterManagerFactory.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Hydrator/Strategy/CollectionLinkHydratorV3.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Hydrator/Strategy/CollectionLinkHydratorV3.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/OrderBy/ODM/AbstractOrderBy.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/OrderBy/ODM/Field.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/Filter/ODMFilterTest.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/Filter/application.config.php" beforeDir="false" afterPath="$PROJECT_DIR$/test/Filter/application.config.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/OrderBy/ODMOrderByTest.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/OrderBy/application.config.php" beforeDir="false" afterPath="$PROJECT_DIR$/test/OrderBy/application.config.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/OrderBy/local.php" beforeDir="false" afterPath="$PROJECT_DIR$/test/OrderBy/local.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/Query/Provider/DefaultOdmFactoryTest.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/Query/Provider/DefaultOdmTest.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/assets/module/Db/config/module.config.php" beforeDir="false" afterPath="$PROJECT_DIR$/test/assets/module/Db/config/module.config.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/assets/module/DbMongo/Module.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/assets/module/DbMongo/config/module.config.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/assets/module/DbMongo/config/yml/DbMongo.Document.Meta.dcm.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/assets/module/DbMongo/src/DbMongo/Document/Meta.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/assets/module/DbMongo/src/DbMongo/Module.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/assets/module/DbMongo/src/DbMongo/Repository/MetaRepository.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/OrderBy/Service/ODMOrderByManager.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/OrderBy/Service/ODMOrderByManagerFactory.php" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -184,11 +151,20 @@
     <property name="settings.editor.selected.configurable" value="web-ide.project.structure" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="PHPUnit.phpunit.xml.dist (1)">
+    <configuration name="phpunit.xml.dist (1)" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner configuration_file="$PROJECT_DIR$/phpunit.xml.dist" scope="XML" use_alternative_configuration_file="true" />
+      <method v="2" />
+    </configuration>
     <configuration name="phpunit.xml.dist" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
       <TestRunner scope="XML" />
       <method v="2" />
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="PHPUnit.phpunit.xml.dist (1)" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -201,7 +177,9 @@
       <workItem from="1602686973982" duration="584000" />
       <workItem from="1602772951129" duration="517000" />
       <workItem from="1602789580229" duration="1321000" />
-      <workItem from="1602859743709" duration="1042000" />
+      <workItem from="1602859743709" duration="4271000" />
+      <workItem from="1603088699047" duration="1025000" />
+      <workItem from="1603090503847" duration="220000" />
     </task>
     <servers />
   </component>
@@ -218,11 +196,16 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
     <state x="449" y="175" width="1022" height="737" key="SettingsEditor" timestamp="1602861405858">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="449" y="175" width="1022" height="737" key="SettingsEditor/1920.0.2560.1440/0.27.1920.1053@0.27.1920.1053" timestamp="1602861405858" />
+    <state x="2899" y="349" width="672" height="678" key="search.everywhere.popup" timestamp="1602861623763">
+      <screen x="1920" y="0" width="2560" height="1440" />
+    </state>
+    <state x="2899" y="349" width="672" height="678" key="search.everywhere.popup/1920.0.2560.1440/0.27.1920.1053@1920.0.2560.1440" timestamp="1602861623763" />
   </component>
 </project>
