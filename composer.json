@@ -33,7 +33,7 @@
         }
     },
     "require": {
-        "php": "~8.0.0",
+        "php": "~7.4.0 || ~8.0.0",
         "doctrine/doctrine-module": "^4.1.0",
         "laminas/laminas-modulemanager": "^2.7.2",
         "laminas/laminas-mvc": "^3.3.0",
