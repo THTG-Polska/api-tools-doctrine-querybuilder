@@ -1,6 +1,8 @@
-<?php
+<?php // phpcs:disable
 
 namespace DbMongo\Document;
+
+use DateTime;
 
 class Meta
 {
@@ -18,7 +20,10 @@ class Meta
         return $this->name;
     }
 
-    public function setName($value)
+    /**
+     * @return static
+     */
+    public function setName(string $value): self
     {
         $this->name = $value;
 
@@ -32,7 +37,7 @@ class Meta
         return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTime $value)
+    public function setCreatedAt(DateTime $value): void
     {
         $this->createdAt = $value;
     }
@@ -44,23 +49,29 @@ class Meta
         return $this->description;
     }
 
-    public function setDescription($value)
+    public function setDescription(string $value): void
     {
         $this->description = $value;
     }
 
-    public function getArrayCopy()
+    /**
+     * @return array
+     *
+     * @psalm-return array{name: mixed, createdAt: mixed, description: mixed}
+     */
+    public function getArrayCopy(): array
     {
         return [
-            'name' => $this->getName(),
-            'createdAt' => $this->getCreatedAt(),
+            'name'        => $this->getName(),
+            'createdAt'   => $this->getCreatedAt(),
             'description' => $this->getDescription(),
         ];
     }
 
-    public function exchangeArray($values)
+    public function exchangeArray($values): void
     {
-        $this->setName((isset($values['name'])) ? $values['name'] : null);
-        $this->setCreatedAt((isset($values['createdAt'])) ? $values['createdAt'] : null);
+        $name = $values['name'] ?? '';
+        $this->setName((string) $name);
+        $this->setCreatedAt($values['createdAt'] ?? null);
     }
 }

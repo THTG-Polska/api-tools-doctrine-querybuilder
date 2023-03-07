@@ -1,9 +1,23 @@
 Laminas Doctrine QueryBuilder
 ========================
 
-[![Build Status](https://travis-ci.com/laminas-api-tools/api-tools-doctrine-querybuilder.svg?branch=master)](https://travis-ci.com/laminas-api-tools/api-tools-doctrine-querybuilder)
-[![Coverage Status](https://coveralls.io/repos/github/laminas-api-tools/api-tools-doctrine-querybuilder/badge.svg?branch=master)](https://coveralls.io/github/laminas-api-tools/api-tools-doctrine-querybuilder?branch=master)
-[![Total Downloads](https://poser.pugx.org/laminas-api-tools/api-tools-doctrine-querybuilder/downloads)](https://packagist.org/packages/laminas-api-tools/api-tools-doctrine-querybuilder)
+[![Build Status](https://github.com/laminas-api-tools/api-tools-doctrine-querybuilder/actions/workflows/continuous-integration.yml/badge.svg)](https://github.com/laminas-api-tools/api-tools-doctrine-querybuilder/actions/workflows/continuous-integration.yml)
+
+> ## 🇷🇺 Русским гражданам
+>
+> Мы, участники Laminas, родились и живем в разных странах. У многих из нас есть друзья, родственники и коллеги как в России, так и в Украине. Некоторые из нас родились в России. Некоторые из нас живут в России. У некоторых бабушки и дедушки сражались с фашистами во Второй мировой войне. Здесь никто не поддерживает фашизм.
+>
+> У одного из нас есть украинская родственница, которая спаслась из дома вместе с сыном. Поезд задержался из-за бомбежки на дороге впереди. У нас есть друзья, которые прячутся в бомбоубежищах. Мы с тревогой ждем весточки от них после воздушных налетов, которые беспорядочно наносят удары и попадают по больницам, школам, детским садам и домам. Мы не берем это из каких-либо СМИ. Мы наблюдаем это напрямую.
+>
+> Вы доверяете нам достаточно, чтоб использовать наши программы, и мы просим вас довериться нам вновь. Мы нуждаемся в помощи. Выходите и протестуйте против этой бесполезной войны. Остановите кровопролитие. Скажите "Нет войне!"
+>
+> ## 🇺🇸 To Citizens of Russia
+>
+> We at Laminas come from all over the world. Many of us have friends, family and colleagues in both Russia and Ukraine. Some of us were born in Russia. Some of us currently live in Russia. Some have grandparents who fought Nazis in World War II. Nobody here supports fascism.
+>
+> One team member has a Ukrainian relative who fled her home with her son. The train was delayed due to bombing on the road ahead. We have friends who are hiding in bomb shelters. We anxiously follow up on them after the air raids, which indiscriminately fire at hospitals, schools, kindergartens and houses. We're not taking this from any media. These are our actual experiences.
+>
+> You trust us enough to use our software. We ask that you trust us to say the truth on this. We need your help. Go out and protest this unnecessary war. Stop the bloodshed. Say "stop the war!"
 
 This library provides query builder directives from array parameters. This library was designed
 to apply filters from an HTTP request to give an API fluent filter and order-by dialects.
@@ -442,3 +456,46 @@ Field:
 ```php
 ['type' => 'field', 'field' => 'fieldName', 'direction' => 'desc']
 ```
+
+Custom MappingTypes
+-------------------
+
+In case you have [custom mapping types](https://www.doctrine-project.org/projects/doctrine-orm/en/latest/cookbook/custom-mapping-types.html)
+configured, you can substitute the supplied `Laminas\ApiTools\Doctrine\QueryBuilder\Filter\TypeCastInterface`
+implementation with your own implementation.
+
+As an example, given a custom type caster implentation as follows:
+
+```php
+namespace My\Custom;
+
+class TypeCaster implements \Laminas\ApiTools\Doctrine\QueryBuilder\Filter\TypeCastInterface
+{
+    public function typeCastField($metadata, $field, $value, $format = null, $doNotTypecastDatetime = false)
+    {
+        // implement your type casting logic
+    }
+}
+```
+
+You will then provide a factory for your implementation, and alias the package `TypeCastInterface` to it:
+
+```php
+// config/autoload/api-tools-doctrine-querybuilder-global.php
+
+use Laminas\ApiTools\Doctrine\QueryBuilder\Filter\TypeCastInterface;
+use Laminas\ServiceManager\Factory\InvokableFactory;
+use My\Custom\TypeCaster;
+
+return [
+    'service_manager => [
+        'aliases' => [
+            TypeCastInterface::class => TypeCaster::class,
+        ],
+        'factories' => [
+            TypeCaster::class => InvokableFactory::class,
+        ],
+    ],
+];
+```
+

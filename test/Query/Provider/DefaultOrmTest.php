@@ -23,31 +23,26 @@ use Laminas\ServiceManager\ServiceLocatorInterface;
 use Laminas\Stdlib\Parameters;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 use Prophecy\Prophecy\ProphecyInterface;
 
 class DefaultOrmTest extends TestCase
 {
-    /**
-     * @var DefaultOrm|ProphecyInterface
-     */
+    use ProphecyTrait;
+
+    /** @var DefaultOrm|ProphecyInterface */
     protected $provider;
 
-    /**
-     * @var QueryBuilder|ProphecyInterface
-     */
+    /** @var QueryBuilder|ProphecyInterface */
     protected $queryBuilder;
 
-    /**
-     * @var ObjectManager|ProphecyInterface
-     */
+    /** @var ObjectManager|ProphecyInterface */
     protected $objectManager;
 
-    /**
-     * @var ServiceLocatorInterface|ProphecyInterface
-     */
+    /** @var ServiceLocatorInterface|ProphecyInterface */
     protected $serviceLocator;
 
-    protected function setUp()
+    public function setUp(): void
     {
         $this->queryBuilder = $this->prophesize(QueryBuilder::class);
         $this->queryBuilder->select(Argument::any())->willReturn($this->queryBuilder->reveal());
@@ -63,7 +58,7 @@ class DefaultOrmTest extends TestCase
         $this->provider->setObjectManager($this->objectManager->reveal());
     }
 
-    public function testCreateQueryWithoutParams()
+    public function testCreateQueryWithoutParams(): void
     {
         $resourceEvent = $this->getResourceEvent();
 
@@ -72,7 +67,7 @@ class DefaultOrmTest extends TestCase
         $this->assertInstanceOf(QueryBuilder::class, $result);
     }
 
-    public function testCreateQueryWithFilterParameter()
+    public function testCreateQueryWithFilterParameter(): void
     {
         $entityClass = 'foo.entity.class';
 
@@ -94,7 +89,7 @@ class DefaultOrmTest extends TestCase
         $this->assertSame($this->queryBuilder->reveal(), $result);
     }
 
-    public function testCreateQueryWithRenamedFilterParameter()
+    public function testCreateQueryWithRenamedFilterParameter(): void
     {
         $entityClass = 'foo.entity.class';
 
@@ -120,7 +115,7 @@ class DefaultOrmTest extends TestCase
         $this->assertSame($this->queryBuilder->reveal(), $result);
     }
 
-    public function testCreateQueryWithOrderByParameter()
+    public function testCreateQueryWithOrderByParameter(): void
     {
         $entityClass = 'foo.entity.class';
 
@@ -142,7 +137,7 @@ class DefaultOrmTest extends TestCase
         $this->assertSame($this->queryBuilder->reveal(), $result);
     }
 
-    public function testCreateQueryWithRenamedOrderByParameter()
+    public function testCreateQueryWithRenamedOrderByParameter(): void
     {
         $entityClass = 'foo.entity.class';
 
@@ -168,7 +163,7 @@ class DefaultOrmTest extends TestCase
         $this->assertSame($this->queryBuilder->reveal(), $result);
     }
 
-    public function testCreateQueryWithFilterAndOrderByParameters()
+    public function testCreateQueryWithFilterAndOrderByParameters(): void
     {
         $entityClass = 'foo.entity.class';
 
@@ -188,7 +183,7 @@ class DefaultOrmTest extends TestCase
         $this->serviceLocator->get(ORMFilterManager::class)->willReturn($filterManager->reveal());
 
         $resourceEvent = $this->getResourceEvent([
-            'filter' => 'foo-filter',
+            'filter'   => 'foo-filter',
             'order-by' => 'foo-order-by',
         ]);
 
@@ -198,7 +193,7 @@ class DefaultOrmTest extends TestCase
         $this->assertSame($this->queryBuilder->reveal(), $result);
     }
 
-    public function testGetPaginatedQuery()
+    public function testGetPaginatedQuery(): void
     {
         $query = $this->prophesize(AbstractQuery::class);
         $this->queryBuilder->getQuery()->willReturn($query->reveal());
@@ -208,13 +203,15 @@ class DefaultOrmTest extends TestCase
         $this->assertInstanceOf(DoctrineOrmAdapter::class, $adapter);
     }
 
-    public function testGetCollectionTotal()
+    public function testGetCollectionTotal(): void
     {
         $entityClass = 'foo.entity.class';
 
-        $metadata = $this->prophesize(ClassMetadata::class)->reveal();
+        $metadata = $this->prophesize(ClassMetadata::class);
+        $metadata->getIdentifier()->willReturn(['id']);
+
         $metadataFactory = $this->prophesize(ClassMetadataFactory::class);
-        $metadataFactory->getMetadataFor($entityClass)->willReturn($metadata);
+        $metadataFactory->getMetadataFor($entityClass)->willReturn($metadata->reveal());
 
         $this->objectManager->getMetadataFactory()->willReturn($metadataFactory->reveal());
 
@@ -231,7 +228,7 @@ class DefaultOrmTest extends TestCase
      * @param array|null $params
      * @return ResourceEvent|ProphecyInterface
      */
-    protected function getResourceEvent(array $params = null)
+    protected function getResourceEvent(?array $params = null)
     {
         $request = $this->prophesize(Request::class);
         $request->getQuery()->willReturn(new Parameters($params));

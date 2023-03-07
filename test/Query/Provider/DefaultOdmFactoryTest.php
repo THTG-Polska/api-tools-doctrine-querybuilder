@@ -13,30 +13,31 @@ use Laminas\ApiTools\Doctrine\QueryBuilder\Query\Provider\DefaultOdmFactory;
 use Laminas\ServiceManager\AbstractPluginManager;
 use Laminas\ServiceManager\ServiceLocatorInterface;
 use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 class DefaultOdmFactoryTest extends TestCase
 {
-    public function testInvokableFactoryReturnsDefaultOdmQueryProvider()
+    use ProphecyTrait;
+
+    public function testInvokableFactoryReturnsDefaultOdmQueryProvider(): void
     {
         $serviceLocator = $this->prophesize(ServiceLocatorInterface::class)->reveal();
 
-        $factory = new DefaultOdmFactory();
+        $factory  = new DefaultOdmFactory();
         $provider = $factory($serviceLocator);
 
         $this->assertInstanceOf(DefaultOdm::class, $provider);
-        $this->assertAttributeSame($serviceLocator, 'serviceLocator', $provider);
     }
 
-    public function testInvokableFactoryReturnsDefaultOdmQueryProviderWhenCreatedViaAbstractPluginManager()
+    public function testInvokableFactoryReturnsDefaultOdmQueryProviderWhenCreatedViaAbstractPluginManager(): void
     {
-        $serviceLocator = $this->prophesize(ServiceLocatorInterface::class)->reveal();
+        $serviceLocator        = $this->prophesize(ServiceLocatorInterface::class)->reveal();
         $abstractPluginManager = $this->prophesize(AbstractPluginManager::class);
         $abstractPluginManager->getServiceLocator()->willReturn($serviceLocator);
 
-        $factory = new DefaultOdmFactory();
+        $factory  = new DefaultOdmFactory();
         $provider = $factory($abstractPluginManager->reveal());
 
         $this->assertInstanceOf(DefaultOdm::class, $provider);
-        $this->assertAttributeSame($serviceLocator, 'serviceLocator', $provider);
     }
 }

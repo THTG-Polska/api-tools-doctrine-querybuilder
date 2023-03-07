@@ -1,56 +1,60 @@
-<?php
+<?php // phpcs:disable
 
 namespace Db\Entity;
 
+use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Exception;
 
 class Artist
 {
-    /**
-     * Constructor
-     */
+    protected $id;
+
+    protected $name;
+
+    protected $createdAt;
+
+    protected $album;
+
     public function __construct()
     {
         $this->album = new ArrayCollection();
     }
-
-    protected $id;
 
     public function getId()
     {
         return $this->id;
     }
 
-    protected $name;
-
     public function getName()
     {
         return $this->name;
     }
 
-    public function setName($value)
+    /**
+     * @return static
+     */
+    public function setName(string $value): self
     {
         $this->name = $value;
 
         return $this;
     }
 
-    protected $createdAt;
-
     public function getCreatedAt()
     {
         return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTime $value)
+    /**
+     * @return static
+     */
+    public function setCreatedAt(DateTime $value): self
     {
         $this->createdAt = $value;
 
         return $this;
     }
-
-    protected $album;
 
     public function getAlbum()
     {
@@ -84,9 +88,12 @@ class Artist
      * Remove album
      *
      * @param Album $album
+     *
      * @throws Exception
+     *
+     * @return void
      */
-    public function removeAlbum($album)
+    public function removeAlbum($album): void
     {
         if ($album instanceof Album) {
             $this->album[] = $album;
