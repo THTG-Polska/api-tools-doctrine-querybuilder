@@ -8,11 +8,10 @@
 
 namespace Laminas\ApiTools\Doctrine\QueryBuilder;
 
-use Laminas\ModuleManager\Feature\DependencyIndicatorInterface;
 use Laminas\ModuleManager\Listener\ServiceListener;
 use Laminas\ModuleManager\ModuleManager;
 
-class Module implements DependencyIndicatorInterface
+class Module
 {
     public function getConfig()
     {
@@ -51,15 +50,5 @@ class Module implements DependencyIndicatorInterface
             OrderBy\OrderByInterface::class,
             'getDoctrineQueryBuilderOrderByOdmConfig'
         );
-    }
-
-    /**
-     * Expected to return an array of modules on which the current one depends on
-     *
-     * @return array
-     */
-    public function getModuleDependencies()
-    {
-        return ['DoctrineModule'];
     }
 }

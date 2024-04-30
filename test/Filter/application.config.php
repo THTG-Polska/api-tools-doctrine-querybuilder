@@ -8,8 +8,6 @@
 
 return [
     'modules' => [
-        'DoctrineModule',
-        'DoctrineORMModule',
         'Db',
         'Laminas\ApiTools\Doctrine\QueryBuilder',
     ],
