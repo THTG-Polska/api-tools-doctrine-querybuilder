@@ -33,11 +33,10 @@
         }
     },
     "require": {
-        "php": "~8.0.0 | ~8.1.0 | ~8.2.0",
+        "php": "~8.4.0",
         "laminas/laminas-modulemanager": "^2.7",
         "laminas/laminas-mvc": "^3.3",
-        "laminas/laminas-servicemanager": "^3.10",
-        "laminas/laminas-zendframework-bridge": "^1.0"
+        "laminas/laminas-servicemanager": "^3.10"
     },
     "require-dev": {
     },
